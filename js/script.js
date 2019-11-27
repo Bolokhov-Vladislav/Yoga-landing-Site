@@ -210,7 +210,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
     // SLIDER
     let slideIndex = 1,
-
         slides = document.querySelectorAll('.slider-item'),
         prev = document.querySelector('.prev'),
         next = document.querySelector('.next'),
@@ -237,19 +236,20 @@ window.addEventListener('DOMContentLoaded', function() {
     function plusSlides(n) {
         showSlides(slideIndex += n);
     }
+    
+    next.addEventListener('click', function() {
+        plusSlides(1);//1 шаг вперед 
+    });
+    prev.addEventListener('click', function() {
+        plusSlides(-1);//1 шаг назад по слайдеру 
+    });
+
     function currentSlide(n){
         showSlides(slideIndex = n);
     }
 
-    prev.addEventListener('click', function() {
-        plusSlides(-1);//1 шаг назад по слайдеру 
-    });
-    next.addEventListener('click', function() {
-        plusSlides(1);//1 шаг вперед 
-    });
-
     dotsWrap.addEventListener('click', function(e) {
-        for (let i = 0; i < dots.length + 1; i++){
+        for (let i = 0; i <= dots.length; i++){
             if(e.target.classList.contains('dot') && e.target == dots[i-1]){
                 currentSlide(i);
             }
