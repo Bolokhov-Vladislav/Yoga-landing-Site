@@ -255,4 +255,6 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    //calc
 });
