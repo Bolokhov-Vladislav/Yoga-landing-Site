@@ -39,27 +39,30 @@ window.addEventListener('DOMContentLoaded', function() {
     //timer
 
     //1) deadline
-    let deadline = '2019-11-15';
+    let deadline = '2019-12-6';
 
     function getTimeRemaining(endtime) {
-        let t = Date.parse(endtime) - Date.parse(new Date()); //кол милисек.
+        let t = Date.parse(endtime) - Date.parse(new Date());
 
         let seconds = Math.floor((t/1000) % 60),
             minutes = Math.floor((t/1000/60) % 60),
-            // hours = Math.floor((t/1000/60/60) % 24),
-            // days = Math.floor((t/(1000*60*60*24))),
-            hours = Math.floor((t/(1000*60*60)));
+            hours = Math.floor((t/1000/60/60) % 24),
+            days = Math.floor((t/(1000*60*60*24)));
+            console.log(days);
 
             return {
                 'total' : t,
+                'days' : days,
                 'hours' : hours,
                 'minutes' : minutes,
                 'seconds' : seconds
             };
-    };
+    }
 
     function setClock (id, endtime ) {
+        
         let timer = document.getElementById(id),
+            days = timer.querySelector('.days'),
             hours = timer.querySelector('.hours'),
             minutes = timer.querySelector('.minutes'),
             seconds = timer.querySelector('.seconds');
@@ -74,7 +77,12 @@ window.addEventListener('DOMContentLoaded', function() {
                 minutes.textContent = '0' + t.minutes;
             } else if (t.hours < 10) {
                 hours.textContent = '0' + t.hours;
+            } else if ((t.days % 10) === 1) {
+                days.textContent = t.days + ' день';
+            } else if ((t.days % 10) >= 2 && (t.days % 10) <= 4) {
+                days.textContent = t.days + ' дня';
             } else {
+                days.textContent = t.days + ' дней';
                 hours.textContent = t.hours;
                 minutes.textContent = t.minutes;
                 seconds.textContent = t.seconds;
@@ -82,6 +90,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
             if (t.total <= 0) {
                 clearInterval(timeInterval);
+                days.textContent = '0';
                 hours.textContent = '00';
                 minutes.textContent = '00';
                 seconds.textContent = '00';
