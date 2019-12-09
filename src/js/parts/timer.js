@@ -1,5 +1,5 @@
 function timer(){
-    let deadline = '2019-12-6';
+    let deadline = '2019-12-12';
 
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date());
@@ -28,23 +28,12 @@ function timer(){
 
         function updateClock() {
             let t = getTimeRemaining(endtime);
-
-            if (t.seconds < 10) {
-                seconds.textContent = '0' + t.seconds;
-            } else if (t.minutes < 10) {
-                minutes.textContent = '0' + t.minutes;
-            } else if (t.hours < 10) {
-                hours.textContent = '0' + t.hours;
-            } else if ((t.days % 10) === 1) {
-                days.textContent = t.days + ' день';
-            } else if ((t.days % 10) >= 2 && (t.days % 10) <= 4) {
-                days.textContent = t.days + ' дня';
-            } else {
-                days.textContent = t.days + ' дней';
-                hours.textContent = t.hours;
-                minutes.textContent = t.minutes;
-                seconds.textContent = t.seconds;
-            }
+            
+            ((t.days % 10) >= 2 && (t.days % 10) <= 4) ? days.textContent = t.days + ' дня' : 
+            ((t.days % 10) === 1) ? days.textContent = t.days + ' день' : days.textContent = t.days + ' дней';
+            (t.seconds < 10 ) ? seconds.textContent = '0' + t.seconds : seconds.textContent = t.seconds;
+            (t.minutes < 10 ) ? minutes.textContent = '0' + t.minutes : minutes.textContent = t.minutes;
+            (t.hours < 10) ? hours.textContent = '0' + t.hours : hours.textContent = t.hours;
 
             if (t.total <= 0) {
                 clearInterval(timeInterval);
