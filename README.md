@@ -3,8 +3,8 @@ There are features like a countdown counter, slider, tabs, calc and form.
 
 For start you need:
 
-npm install webpack webpack-cli --save-dev;
+npm install webpack webpack-cli --save-dev
 
-npx webpack;
+npx webpack
 
-start index.html in your browser;
+start index.html in your browser
